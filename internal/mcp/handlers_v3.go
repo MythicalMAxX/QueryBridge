@@ -2,12 +2,9 @@
 package mcp
 
 import (
-	"bufio"
 	"context"
 	"encoding/json"
 	"fmt"
-	"os"
-	"strings"
 
 	"github.com/MythicalMAxX/QueryBridge/internal/auth"
 	"github.com/MythicalMAxX/QueryBridge/internal/metadata"
@@ -158,10 +155,10 @@ func (s *Server) viewAuditLogs(ctx context.Context, args json.RawMessage) (*Tool
 	// We'd ideally want a more robust solution, but this fits the "V3" feature set.
 	// Since we can't easily get the filename from s.auditor without modifications,
 	// we'll assume a standard location or check if we can add a getter.
-	
+
 	// For now, let's return a message if we can't find the file.
 	// (Implementation detail: in a real app, s.auditor would have a GetFilePath method)
-	
+
 	data, _ := json.MarshalIndent(map[string]interface{}{
 		"message": "RBAC management available. Audit log exploration requires log file access.",
 		"notice":  "This tool currently displays active permissions as a security audit.",

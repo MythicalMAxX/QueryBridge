@@ -117,9 +117,9 @@ func createAdapter(cfg config.DatabaseConfig) (adapter.Adapter, error) {
 			Database:       cfg.Database,
 			User:           cfg.User,
 			Password:       cfg.Password,
+			SSLMode:        cfg.Options["sslmode"],
 			MaxConnections: cfg.MaxConnections,
 		}), nil
-
 	case "mysql":
 		return adapter.NewMySQLAdapter(cfg.Name, adapter.MySQLConfig{
 			Host:           cfg.Host,

@@ -69,10 +69,10 @@ func main() {
 	go func() {
 		<-sigCh
 		log.Println("Received shutdown signal")
-		
+
 		shutdownCtx, shutdownCancel := context.WithTimeout(ctx, 10*time.Second)
 		defer shutdownCancel()
-		
+
 		if err := server.Shutdown(shutdownCtx); err != nil {
 			log.Printf("Error during shutdown: %v", err)
 		}

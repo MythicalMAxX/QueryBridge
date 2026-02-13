@@ -45,7 +45,7 @@ func NewBridge(configPath string) (*Bridge, error) {
 // NewBridgeWithConfig creates a new QueryBridge using a Config struct directly.
 func NewBridgeWithConfig(cfg *config.Config) (*Bridge, error) {
 	// Create schema registry
-	registry := schema.NewRegistry(cfg.DenyFields)
+	registry := schema.NewRegistry(cfg.DenyFields, nil)
 
 	// Create and connect adapters
 	adapters := make(map[string]adapter.Adapter)
@@ -105,7 +105,9 @@ func createDatabaseAdapter(cfg config.DatabaseConfig) (adapter.Adapter, error) {
 			Database:       cfg.Database,
 			User:           cfg.User,
 			Password:       cfg.Password,
+			SSLMode:        cfg.Options["sslmode"],
 			MaxConnections: cfg.MaxConnections,
+			Options:        cfg.Options,
 		}), nil
 
 	case "mysql":

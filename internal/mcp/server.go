@@ -256,7 +256,7 @@ func (s *Server) handleCallTool(ctx context.Context, req *Request) *Response {
 	case "clear_cache":
 		result, err = s.clearCache(ctx, params.Arguments, s.cache)
 	case "annotate_schema":
-		result, err = s.annotateSchema(ctx, params.Arguments, s.registry.meta)
+		result, err = s.annotateSchema(ctx, params.Arguments, s.registry.Metadata())
 	case "register_resource":
 		result, err = s.registerResource(ctx, params.Arguments)
 	case "analyze_performance":
@@ -614,7 +614,7 @@ func (s *Server) CallToolDirect(ctx context.Context, name string, args map[strin
 	case "clear_cache":
 		result, err = s.clearCache(ctx, argsJSON, s.cache)
 	case "annotate_schema":
-		result, err = s.annotateSchema(ctx, argsJSON, s.registry.meta)
+		result, err = s.annotateSchema(ctx, argsJSON, s.registry.Metadata())
 	case "register_resource":
 		result, err = s.registerResource(ctx, argsJSON)
 	case "analyze_performance":

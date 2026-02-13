@@ -21,6 +21,11 @@ type Registry struct {
 	meta     *metadata.Store
 }
 
+// Metadata returns the metadata store associated with this registry.
+func (r *Registry) Metadata() *metadata.Store {
+	return r.meta
+}
+
 // NewRegistry creates a new schema registry with the given denylist and metadata store.
 func NewRegistry(denyFields []string, meta *metadata.Store) *Registry {
 	denylist := make(map[string]bool, len(denyFields))
