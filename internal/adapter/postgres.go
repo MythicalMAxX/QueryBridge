@@ -28,6 +28,7 @@ type PostgresConfig struct {
 	SSLMode        string
 	MaxConnections int
 	ConnectTimeout int
+	Options        map[string]string
 }
 
 // NewPostgresAdapter creates a new PostgreSQL adapter.
@@ -40,6 +41,9 @@ func NewPostgresAdapter(name string, config PostgresConfig) *PostgresAdapter {
 	}
 	if config.ConnectTimeout <= 0 {
 		config.ConnectTimeout = 10
+	}
+	if config.Options == nil {
+		config.Options = make(map[string]string)
 	}
 
 	return &PostgresAdapter{
@@ -60,6 +64,13 @@ func (a *PostgresAdapter) Connect(ctx context.Context) error {
 		a.config.SSLMode,
 		a.config.ConnectTimeout,
 	)
+
+	// Append additional options
+	for k, v := range a.config.Options {
+		if k != "sslmode" { // Already handled
+			dsn += fmt.Sprintf(" %s=%s", k, v)
+		}
+	}
 
 	db, err := sql.Open("pgx", dsn)
 	if err != nil {
