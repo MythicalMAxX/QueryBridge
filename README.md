@@ -1,7 +1,7 @@
 # QueryBridge 🌉
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Go Version](https://img.shields.io/github/go-mod/go-version/MythicalMAxX/QueryBridge?filename=QueryBridge/go.mod)](https://go.dev/)
+[![Go Version](https://img.shields.io/github/go-mod/go-version/MythicalMAxX/QueryBridge)](https://go.dev/)
 [![MCP Compatible](https://img.shields.io/badge/MCP-Compatible-blue.svg)](https://modelcontextprotocol.io/)
 
 **QueryBridge** is a production-grade MCP (Model Context Protocol) server written in Go, designed to give AI agents secure, natural language access to a wide variety of SQL and NoSQL databases.
